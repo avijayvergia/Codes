@@ -75,9 +75,6 @@ public class Code3_390 {
                     out.println(temp.get(count));
                     count++;
                 }
-
-
-
             }
         }
     }
