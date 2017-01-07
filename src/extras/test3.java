@@ -17,24 +17,7 @@ public class test3 {
 
     static class Task {
         void solve(InputReader scan, PrintWriter out) {
-            int n = scan.nextInt();
-            int num, result=0;
-            int[] a=new int[n+1];
-            Stack<Integer> stack = new Stack<>();
-            stack.add(0);
-            for (int i = 1; i <= n; i++) {
-                num=scan.nextInt();
-                a[i]=num;
-                if(num>0) stack.push(i);
-                else{
-                    int pop=a[stack.pop()];
-                    if(pop==-num){
-                        result=Math.max(result,i- stack.peek());
-                    }
-                    else stack.push(i);
-                }
-            }
-            out.println(result);
+
         }
     }
 
