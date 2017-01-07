@@ -1,48 +1,58 @@
 package extras;
 
-import java.io.*;
+import java.util.Scanner;
 import java.util.Stack;
-import java.util.StringTokenizer;
 
-public class test3 {
+class test3 {
     public static void main(String[] args) {
-        InputStream inputStream = System.in;
-        OutputStream outputStream = System.out;
-        InputReader in = new InputReader(inputStream);
-        PrintWriter out = new PrintWriter(outputStream);
+
         Task solver = new Task();
-        solver.solve(in, out);
-        out.close();
+        solver.solve();
+
     }
 
     static class Task {
-        void solve(InputReader scan, PrintWriter out) {
+
+        int MOD = 1000000007;
+        int fr;
+
+        void solve() {
+            Scanner scanner=new Scanner(System.in);
+            int t = scanner.nextInt();
+
+            for (int i = 0; i < t; i++) {
+                fr = 0;
+                Stack<Integer> stack=new Stack<>();
+                int x = scanner.nextInt();
+                int count=0;
+                while (x > 0) {
+                    stack.push(x%10);
+                    x = x / 10;
+                    count++;
+                }
+                int[] a =new int[count];
+                for(int j=0;j<count;j++){
+                    a[j]=stack.pop();
+
+                }
+                printSubsequences(a, count);
+                System.out.println(fr);
+            }
+
 
         }
-    }
 
-static class InputReader {
-    public BufferedReader reader;
-    public StringTokenizer tokenizer;
-
-    public InputReader(InputStream stream) {
-        reader = new BufferedReader(new InputStreamReader(stream), 32768);
-        tokenizer = null;
-    }
-
-    public String next() {
-        while (tokenizer == null || !tokenizer.hasMoreTokens()) {
-            try {
-                tokenizer = new StringTokenizer(reader.readLine());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+        void printSubsequences(int[] m, int n) {
+            int opsize = (int) Math.pow(2, n);
+            StringBuilder x=new StringBuilder();
+            for (int counter = 1; counter < opsize; counter++) {
+                for (int j = 0; j < n; j++) {
+                    if ((counter & (1 << j)) != 0)
+                        x.append(m[j]);
+                }
+                fr = (fr + Integer.parseInt(x.toString())) % MOD;
+                x.delete(0,x.length());
             }
         }
-        return tokenizer.nextToken();
     }
-
-    public int nextInt() {
-        return Integer.parseInt(next());
-    }
-}
 }
