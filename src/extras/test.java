@@ -1,18 +1,61 @@
 package extras;
 
-import java.math.BigInteger;
-import java.util.Scanner;
+
+import java.io.*;
+import java.util.StringTokenizer;
 
 public class test {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        InputStream inputStream = System.in;
+        OutputStream outputStream = System.out;
+        InputReader in = new InputReader(inputStream);
+        PrintWriter out = new PrintWriter(outputStream);
+        Task solver = new Task();
+        solver.solve(in, out);
+        out.close();
+    }
 
-        int t = scanner.nextInt();
-        BigInteger x, y;
-        for (int i = 0; i < t; i++) {
-            x = scanner.nextBigInteger();
-            y = scanner.nextBigInteger();
-            System.out.println(x.add(y));
+    static class Task {
+        public void solve(InputReader scan, PrintWriter out) {
+            int t=scan.nextInt();
+            int i,lead,next,num;
+            for (int j = 0; j < t; j++) {
+                i=scan.nextInt();
+                lead=32-Integer.numberOfLeadingZeros(i);
+                next=1<<lead;
+                num=next-1-i;
+                out.println(num);
+            }
+        }
+
+    }
+
+    static class InputReader {
+        public BufferedReader reader;
+        public StringTokenizer tokenizer;
+
+        public InputReader(InputStream stream) {
+            reader = new BufferedReader(new InputStreamReader(stream), 32768);
+            tokenizer = null;
+        }
+
+        public String next() {
+            while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+                try {
+                    tokenizer = new StringTokenizer(reader.readLine());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return tokenizer.nextToken();
+        }
+
+        public int nextInt() {
+            return Integer.parseInt(next());
+        }
+
+        long nextLong() {
+            return Long.parseLong(next());
         }
     }
 }
