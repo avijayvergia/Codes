@@ -1,12 +1,9 @@
-package extras;
-
-
-import jdk.nashorn.internal.parser.Scanner;
+package HackerRank;
 
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class test {
+public class NewXor {
     public static void main(String[] args) {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
@@ -18,30 +15,16 @@ public class test {
     }
 
     static class Task {
-
-        int MOD = 1000000007;
-        int n;
-        boolean[] V;
-        StringBuilder a = new StringBuilder();
-        int sum=0;
-
         public void solve(InputReader scan, PrintWriter out) {
-            V = new boolean[n];
             int t=scan.nextInt();
-        }
-
-        void subsets(int i) {
-            if (i == n) {
-                for (int j = 0; j < n; j++)
-                    if (V[j])
-                        a.append(x);
-                if(Integer.parseInt(a.toString())%8==0) sum=(sum+1)%MOD;
-
-            } else {
-                V[i] = true;
-                subsets(i + 1);
-                V[i] = false;
-                subsets(i + 1);
+            long i,next,num;
+            int lead;
+            for (int j = 0; j < t; j++) {
+                i=scan.nextLong();
+                lead=32-Long.numberOfLeadingZeros(i);
+                next=1<<lead;
+                num=next-1-i;
+                out.println(num);
             }
         }
 
