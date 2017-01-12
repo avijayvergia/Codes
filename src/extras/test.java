@@ -1,9 +1,9 @@
 package extras;
 
-
-import jdk.nashorn.internal.parser.Scanner;
-
 import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class test {
@@ -18,31 +18,19 @@ public class test {
     }
 
     static class Task {
-
-        int MOD = 1000000007;
-        int n;
-        boolean[] V;
-        StringBuilder a = new StringBuilder();
-        int sum=0;
+        HashMap<Integer, String> num;
 
         public void solve(InputReader scan, PrintWriter out) {
-            V = new boolean[n];
-            int t=scan.nextInt();
-        }
-
-        void subsets(int i) {
-            if (i == n) {
-                for (int j = 0; j < n; j++)
-                    if (V[j])
-                        a.append(x);
-                if(Integer.parseInt(a.toString())%8==0) sum=(sum+1)%MOD;
-
-            } else {
-                V[i] = true;
-                subsets(i + 1);
-                V[i] = false;
-                subsets(i + 1);
+           String a="I love you very much";
+            Stack<String> stack=new Stack<>();
+            String[] x=a.split(" ");
+            for(int i=0;i<x.length;i++){
+                stack.push(x[i]);
             }
+            for(int i=0;i<x.length-1;i++){
+                out.print(stack.pop()+" ");
+            }
+            out.print(stack.pop());
         }
 
     }
