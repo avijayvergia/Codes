@@ -1,66 +1,46 @@
 package extras;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Stack;
-import java.util.StringTokenizer;
-
 public class test {
+
+    Node root;
+
     public static void main(String[] args) {
-        InputStream inputStream = System.in;
-        OutputStream outputStream = System.out;
-        InputReader in = new InputReader(inputStream);
-        PrintWriter out = new PrintWriter(outputStream);
-        Task solver = new Task();
-        solver.solve(in, out);
-        out.close();
+        test tree = new test();
+        tree.root = new Node(1);
+        tree.root.left = new Node(2);
+        tree.root.right = new Node(3);
+        tree.root.left.left = new Node(4);
+        tree.root.left.right = new Node(5);
+        tree.root.right.left = new Node(6);
+        tree.root.right.right = new Node(7);
+        System.out.println("LCA(4, 5) = " +
+                tree.find(4, 5).data);
     }
 
-    static class Task {
-        HashMap<Integer, String> num;
+    static class Node {
+        Node left, right;
+        int data;
 
-        public void solve(InputReader scan, PrintWriter out) {
-           String a="I love you very much";
-            Stack<String> stack=new Stack<>();
-            String[] x=a.split(" ");
-            for(int i=0;i<x.length;i++){
-                stack.push(x[i]);
-            }
-            for(int i=0;i<x.length-1;i++){
-                out.print(stack.pop()+" ");
-            }
-            out.print(stack.pop());
-        }
-
-    }
-
-    static class InputReader {
-        public BufferedReader reader;
-        public StringTokenizer tokenizer;
-
-        public InputReader(InputStream stream) {
-            reader = new BufferedReader(new InputStreamReader(stream), 32768);
-            tokenizer = null;
-        }
-
-        public String next() {
-            while (tokenizer == null || !tokenizer.hasMoreTokens()) {
-                try {
-                    tokenizer = new StringTokenizer(reader.readLine());
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-            return tokenizer.nextToken();
-        }
-
-        public int nextInt() {
-            return Integer.parseInt(next());
-        }
-
-        long nextLong() {
-            return Long.parseLong(next());
+        Node(int x) {
+            this.data = x;
+            left = null;
+            right = null;
         }
     }
+
+    private Node find(int a, int b) {
+        return find(root, a, b);
+    }
+
+    private Node find(Node x, int a, int b) {
+        if (x == null) return null;
+        if (x.data == a || x.data == b) return x;
+        Node left_lca = find(x.left, a, b);
+        Node right_lca = find(x.right, a, b);
+        if (left_lca != null && right_lca != null) return x;
+        return left_lca != null ? left_lca : right_lca;
+    }
+
 }
+
+
