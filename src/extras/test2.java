@@ -1,8 +1,6 @@
 package extras;
 
-import org.omg.CORBA.NO_IMPLEMENT;
-
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -15,6 +13,7 @@ public class test2 {
     class Node {
         Node left, right;
         int data;
+
         Node(int x) {
             this.data = x;
             left = null;
@@ -22,17 +21,35 @@ public class test2 {
         }
     }
 
-    private void find(Node x) {
-        Queue<HashMap<Node, Integer>> queue = new LinkedList<>();
-        HashMap<Node, Integer> map = new HashMap<>();
-        map.put(x, 0);
-        queue.add(map);
-        Node a;
-        int level;
-        while (!queue.isEmpty()) {
-            map=queue.poll();
-
+    private void find(Node x){
+        Queue<Node> queue = new LinkedList<>();
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(x.data);
+        queue.add(x);
+        while (true) {
+            int size = queue.size();
+            if (size == 0) break;
+            int sum = 0;
+            while (size > 0) {
+                Node node=queue.poll();
+                if (node.left != null){
+                    sum += node.left.data;
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    sum += node.right.data;
+                    queue.add(node.right);
+                }
+                size--;
+            }
+            System.out.println(sum);
+            if(sum>0) list.add(sum);
         }
+        int mul = 1;
+        for (Integer a : list) {
+            mul = mul * a;
+        }
+        System.out.println(mul);
     }
 
     private void solve() {
