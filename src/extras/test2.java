@@ -10,7 +10,6 @@ public class test2 {
     public static void main(String[] args) {
         test2 tes = new test2();
         tes.solve();
-
     }
 
     class Node {
