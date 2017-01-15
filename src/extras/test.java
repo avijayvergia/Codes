@@ -1,28 +1,38 @@
 package extras;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-
 public class test {
+    private int[] b;
+
     public static void main(String[] args) {
         test tree = new test();
         tree.solve();
     }
 
     private void solve() {
-        ArrayList<Integer> b=new ArrayList<>();
-        b.add(45);b.add(59);b.add(9);b.add(589);
-        b.sort((x, y) -> {
-            String X = String.valueOf(x);
-            String Y = String.valueOf(y);
-            String XY = X + Y;
-            String YX = Y + X;
-            System.out.print(XY+" ");
-            System.out.println(YX);
-            return YX.compareTo(XY);
-        });
-        System.out.println(b);
+        int[] a = {5, 2, 3, 6, 7};
+        b = new int[]{9, 2, 8, 4, 5};
+        System.out.println(find(a, 0, 0));
+    }
+
+    private int find(int[] a, int index, int d) {
+        if (index == 5) {
+            int x = 0;
+            for (int i = 0; i < 5; i++) {
+                x = x + a[5 - i - 1] * (int) Math.pow(10, i);
+            }
+            return x;
+        }
+        int r_max = 0;
+        for (int i = d; i < 5; i++) {
+            r_max = Math.max(find(a, index + 1, d), find(swap(a, i, index), index + 1, d + 1));
+        }
+        return r_max;
+    }
+
+    private int[] swap(int[] a, int i, int index) {
+        int[] x = a.clone();
+        x[index] = b[i];
+        return x;
     }
 
 }
