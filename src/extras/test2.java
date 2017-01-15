@@ -16,7 +16,6 @@ public class test2 {
     class Node {
         Node left, right;
         int data;
-
         Node(int x) {
             this.data = x;
             left = null;
