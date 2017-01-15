@@ -1,8 +1,7 @@
 package extras;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Arrays;
 
 public class test2 {
     public static void main(String[] args) {
@@ -10,57 +9,44 @@ public class test2 {
         tes.solve();
     }
 
-    class Node {
-        Node left, right;
-        int data;
+    private ArrayList<String> list;
 
-        Node(int x) {
-            this.data = x;
-            left = null;
-            right = null;
+    private void perm(char[] a, int i, int n) {
+        if (i == n) {
+            list.add(Arrays.toString(a));
+            return;
+        }
+        for (int j = i; j <= n; j++) {
+            swap(a, i, j);
+            perm(a, i + 1, n);
+            swap(a, i, j);
         }
     }
 
-    private void find(Node x){
-        Queue<Node> queue = new LinkedList<>();
-        ArrayList<Integer> list = new ArrayList<>();
-        list.add(x.data);
-        queue.add(x);
-        while (true) {
-            int size = queue.size();
-            if (size == 0) break;
-            int sum = 0;
-            while (size > 0) {
-                Node node=queue.poll();
-                if (node.left != null){
-                    sum += node.left.data;
-                    queue.add(node.left);
-                }
-                if (node.right != null) {
-                    sum += node.right.data;
-                    queue.add(node.right);
-                }
-                size--;
-            }
-            System.out.println(sum);
-            if(sum>0) list.add(sum);
-        }
-        int mul = 1;
-        for (Integer a : list) {
-            mul = mul * a;
-        }
-        System.out.println(mul);
+    private void swap(char[] a, int i, int j) {
+        char temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
     }
 
     private void solve() {
-        Node root = new Node(6);
-        root.left = new Node(4);
-        root.left.left = new Node(3);
-        root.left.right = new Node(5);
-        root.right = new Node(7);
-        root.right.left = new Node(8);
-        root.right.right = new Node(9);
-        find(root);
+        char[] a = {'d', 'r', 'r'};
+        list = new ArrayList<>();
+        int[][] mat={{1,-3,0},{-2,1,-1}};
+        perm(a, 0, 2);
+        int max=0;
+        int x=0,y=0;
+        for (String s : list) {
+            int sum=0;
+            for(int i=0;i<s.length();i++){
+                if(s.charAt(i)=='d') x++;
+                else y++;
+                sum+=mat[x][y];
+            }
+            max=Math.max(max,sum+mat[0][0]);
+        }
+        System.out.println(max);
+
     }
 
 
