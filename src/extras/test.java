@@ -15,16 +15,16 @@ public class test {
     }
 
     private int find(int[] a, int index, int d) {
-        if (index == 5) {
+        if (index == 4) {
             int x = 0;
             for (int i = 0; i < 5; i++) {
                 x = x + a[5 - i - 1] * (int) Math.pow(10, i);
             }
             return x;
         }
-        int r_max = 0;
+        int r_max = find(a, index + 1, d);
         for (int i = d; i < 5; i++) {
-            r_max = Math.max(find(a, index + 1, d), find(swap(a, i, index), index + 1, d + 1));
+            r_max = Math.max(r_max, find(swap(a, i, index), index + 1, i + 1));
         }
         return r_max;
     }
