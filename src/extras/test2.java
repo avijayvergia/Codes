@@ -80,13 +80,10 @@ public class test2 {
         insert(1);
         insert(2);
         insert(3);
-        reverse();
-        traverse(head);
 
         insert2(5);
         insert2(9);
         insert2(3);
-        traverse(head2);
         findSum();
     }
 
