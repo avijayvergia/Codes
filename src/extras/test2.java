@@ -73,9 +73,7 @@ public class test2 {
 
     }
 
-    public Node find(Node x) {
 
-    }
 
     private void solve() {
         insert(1);
