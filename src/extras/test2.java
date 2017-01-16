@@ -1,5 +1,7 @@
 package extras;
 
+import java.util.Arrays;
+
 public class test2 {
     public static void main(String[] args) {
         test2 tes = new test2();
@@ -45,35 +47,34 @@ public class test2 {
         }
     }
 
-
-    private void reverse() {
-        Node curr = head;
-        Node prev = null, next;
-
-        while (curr != null) {
-            next = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = next;
-        }
-        head = prev;
-
-    }
-
-    private void traverse(Node x) {
-        Node temp = x;
-        while (temp != null) {
-            System.out.print(temp.data + " ");
-            temp = temp.next;
-        }
-        System.out.println();
-    }
-
+    private int[] a=new int[4];
+    private int count;
     public void findSum() {
-
+        count=0;
+        head=find(head);
+        count=0;
+        find2(head2);
+        a[3]=carry;
+        System.out.println(Arrays.toString(a));
     }
 
+    private int carry=0;
+    public Node find2(Node x) {
+        if(x==null) return null;
+        x.next=find2(x.next);
+        a[count]=(a[count]+x.data+carry)%10;
+        carry=(a[count]+x.data+carry)/10;
+        count++;
+        return x;
+    }
 
+    public Node find(Node x) {
+        if(x==null) return null;
+        x.next=find(x.next);
+        a[count]=x.data;
+        count++;
+        return x;
+    }
 
     private void solve() {
         insert(1);
@@ -86,6 +87,7 @@ public class test2 {
         insert2(9);
         insert2(3);
         traverse(head2);
+        findSum();
     }
 
 
