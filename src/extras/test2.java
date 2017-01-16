@@ -10,9 +10,9 @@ public class test2 {
         prev = new int[maxSize + 1];
     }
 
-    private void insert(int x, int pos) {
-        prev[x] = pos;
-        next[x] = next[pos];
+    private void insert(int x) {
+        prev[x] = 0;
+        next[x] = next[0];
         prev[next[x]] = x;
         next[prev[x]] = x;
     }
@@ -27,7 +27,7 @@ public class test2 {
         int n = 10;
         test2 list = new test2(n);
         for (int i = 1; i <= n; i++) {
-            list.insert(i, 0);
+            list.insert(i);
         }
         list.remove(1);
         list.remove(10);
