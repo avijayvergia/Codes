@@ -5,19 +5,19 @@ public class test2 {
     private int[] next;
     private int[] prev;
 
-    public test2(int maxSize) {
+    private test2(int maxSize) {
         next = new int[maxSize + 1];
         prev = new int[maxSize + 1];
     }
 
-    public void insert(int x, int pos) {
+    private void insert(int x, int pos) {
         prev[x] = pos;
         next[x] = next[pos];
         prev[next[x]] = x;
         next[prev[x]] = x;
     }
 
-    public void remove(int x) {
+    private void remove(int x) {
         next[prev[x]] = next[x];
         prev[next[x]] = prev[x];
     }
