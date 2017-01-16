@@ -1,40 +1,94 @@
 package extras;
 
 public class test2 {
+    public static void main(String[] args) {
+        test2 tes = new test2();
+        tes.solve();
+    }
 
-    private int[] next;
-    private int[] prev;
+    private Node head = null;
+    private Node head2 = null;
 
-    private test2(int maxSize) {
-        next = new int[maxSize + 1];
-        prev = new int[maxSize + 1];
+    class Node {
+        Node next;
+        int data;
+
+        Node(int x) {
+            this.data = x;
+            next = null;
+        }
     }
 
     private void insert(int x) {
-        prev[x] = 0;
-        next[x] = next[0];
-        prev[next[x]] = x;
-        next[prev[x]] = x;
-    }
 
-    private void remove(int x) {
-        next[prev[x]] = next[x];
-        prev[next[x]] = prev[x];
-    }
-
-    // Usage example
-    public static void main(String[] args) {
-        int n = 10;
-        test2 list = new test2(n);
-        for (int i = 1; i <= n; i++) {
-            list.insert(i);
+        if (head == null) {
+            head = new Node(x);
+        } else {
+            Node temp = head;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = new Node(x);
         }
-        list.remove(1);
-        list.remove(10);
-        list.remove(5);
-        for (int i = list.next[0]; i != 0; i = list.next[i]) {
-            System.out.print(i + " ");
+    }
+
+    private void insert2(int x) {
+
+        if (head2 == null) {
+            head2 = new Node(x);
+        } else {
+            Node temp = head2;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = new Node(x);
+        }
+    }
+
+
+    private void reverse() {
+        Node curr = head;
+        Node prev = null, next;
+
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+
+    }
+
+    private void traverse(Node x) {
+        Node temp = x;
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
         }
         System.out.println();
     }
+
+    public void findSum() {
+
+    }
+
+    public Node find(Node x) {
+
+    }
+
+    private void solve() {
+        insert(1);
+        insert(2);
+        insert(3);
+        reverse();
+        traverse(head);
+
+        insert2(5);
+        insert2(9);
+        insert2(3);
+        traverse(head2);
+    }
+
+
 }
