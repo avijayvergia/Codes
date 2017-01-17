@@ -1,5 +1,7 @@
 package extras;
 
+import java.util.Arrays;
+
 public class test {
     public static void main(String[] args) {
         test tree = new test();
@@ -7,17 +9,26 @@ public class test {
     }
 
     public void solve(){
-        int[] a={1,-5,4,8,-78,89,-89,70,10,10,-80};
-        // MaxSum subarray
+        int[] a={1,-5,4,8,-78,89,90,70,10,10,-80};
+        // Largest Increasing Subsequence
 
-        int curr_max=0;
-        int max_sum=0;
-        for (int anA : a) {
-            curr_max = Math.max(curr_max + anA, anA);
-            max_sum = Math.max(curr_max, max_sum);
+        int[] len=new int[a.length];
+        Arrays.fill(len,1);
+
+        for(int i=1;i<a.length;i++){
+            for(int j=0;j<i;j++){
+                if(a[i]>a[j]&&len[i]<len[j]+1){
+                    len[i]=len[j]+1;
+                }
+            }
         }
 
-        System.out.println(max_sum);
+        int max=0;
+        for(int i=0;i<a.length;i++){
+            if(max<len[i]) max=len[i];
+        }
+        System.out.println(max);
+
 
     }
 
