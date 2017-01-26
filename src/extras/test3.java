@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.StringTokenizer;
 import java.util.Random;
 
-public class test2 {
+public class test3 {
     public static void main(String[] args) {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
