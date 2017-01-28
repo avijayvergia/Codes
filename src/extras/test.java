@@ -19,44 +19,29 @@ public class test {
 
     static class Task {
         public void solve(InputReader scan, PrintWriter out) {
-            int w=scan.nextInt();
-            int c=scan.nextInt();
-            int count=0;
-            ArrayList<Integer> list=new ArrayList<>();
-            for (int i = 0; i < c; i++) {
-                int a=scan.nextInt();
-                int item=scan.nextInt();
-                for (int j = 0; j < a; j++) {
-                    list.add(count,item);
-                    count++;
-                }
-            }
-            int[] wei=new int[list.size()];
-            int[] val=new int[list.size()];
-            for (int i = 0; i < list.size(); i++) {
-                val[i]=list.get(i);
-            }
-            Arrays.fill(wei,1);
-            out.println(bottomUpDP(val,wei,w));
-        }
-
-        public int bottomUpDP(int val[], int wt[], int W){
-            int K[][] = new int[val.length+1][W+1];
-            for(int i=0; i <= val.length; i++){
-                for(int j=0; j <= W; j++){
-                    if(i == 0 || j == 0){
-                        K[i][j] = 0;
+            int t = scan.nextInt();
+            int x, num, y;
+            for (int i = 0; i < t; i++) {
+                num = scan.nextInt();
+                if (num < 38) out.println(num);
+                else {
+                    x = num / 10;
+                    y = num % 10;
+                    if (y != 0) {
+                        if (y <= 5) x = x * 10 + 5;
+                        else if (y > 5) x = x * 10 + 10;
+                    }
+                    else{
+                        out.println(num);
                         continue;
                     }
-                    if(j - wt[i-1] >= 0){
-                        K[i][j] = Math.max(K[i-1][j], K[i-1][j-wt[i-1]] + val[i-1]);
-                    }else{
-                        K[i][j] = K[i-1][j];
-                    }
+                    if (x - num < 3) out.println(x);
+                    else out.println(num);
+
                 }
             }
-            return K[val.length][W];
         }
+
     }
 
     static class InputReader {
@@ -82,7 +67,8 @@ public class test {
         public int nextInt() {
             return Integer.parseInt(next());
         }
-        public long nextLong(){
+
+        public long nextLong() {
             return Long.parseLong(next());
         }
     }
