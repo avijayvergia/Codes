@@ -15,47 +15,43 @@ public class test {
     }
 
     static class Task {
+        int row, count = 0;
+        int[] r = {0, -1, -1, -1, 0, 1, 1, 1};
+        int[] c = {-1, -1, 0, 1, 1, 1, 0, -1};
+        int[][] a;
+
         public void solve(InputReader scan, PrintWriter out) {
-            String string = scan.next();
-            Stack<Node> stack = new Stack<>();
-            int mod;
-            Node temp;
-            for (int i = 0; i < string.length(); i++) {
-                mod = string.charAt(i) - 'a' + 1;
-                if (stack.size() != 0) {
-                    temp = stack.peek();
-                    if (mod == temp.c) {
-                        stack.push(new Node(mod, temp.times + 1));
-                    } else {
-                        stack.push(new Node(mod, 1));
-                    }
-                } else {
-                    stack.push(new Node(mod, 1));
-                }
+            row = scan.nextInt();
+            a = new int[row][row];
+            int ob = scan.nextInt();
+            int l = scan.nextInt() - 1;
+            int m = scan.nextInt() - 1;
+            a[l][m] = 1;
+            int x, y;
+            for (int i = 0; i < ob; i++) {
+                x = scan.nextInt() - 1;
+                y = scan.nextInt() - 1;
+                a[x][y] = -1;
             }
-            HashSet<Integer> set = new HashSet<>();
-            for (Node node : stack) {
-                set.add(node.c * node.times);
+            for (int i = 0; i < 8; i++) {
+                find(i, l, m);
             }
-            int t = scan.nextInt();
-            int num;
-            for (int i = 0; i < t; i++) {
-                num = scan.nextInt();
-                if (set.contains(num)) {
-                    out.println("Yes");
-                } else out.println("No");
+            out.println(count);
+        }
+
+        int locX, locY;
+        private void find(int i, int posX, int posY) {
+            locX = posX + r[i];
+            locY = posY + c[i];
+            if (isValid(locX, locY) && a[locX][locY] != -1) {
+                count++;
+                find(i, locX, locY);
             }
         }
 
-        class Node {
-            int c, times;
-
-            public Node(int c, int times) {
-                this.c = c;
-                this.times = times;
-            }
+        boolean isValid(int x, int y) {
+            return x >= 0 && x < row && y >= 0 && y < row;
         }
-
     }
 
     static class InputReader {
