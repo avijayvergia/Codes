@@ -1,10 +1,7 @@
 package extras;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.StringTokenizer;
-import java.util.Random;
+import java.util.*;
 
 public class test {
     public static void main(String[] args) {
@@ -19,26 +16,43 @@ public class test {
 
     static class Task {
         public void solve(InputReader scan, PrintWriter out) {
+            String string = scan.next();
+            Stack<Node> stack = new Stack<>();
+            int mod;
+            Node temp;
+            for (int i = 0; i < string.length(); i++) {
+                mod = string.charAt(i) - 'a' + 1;
+                if (stack.size() != 0) {
+                    temp = stack.peek();
+                    if (mod == temp.c) {
+                        stack.push(new Node(mod, temp.times + 1));
+                    } else {
+                        stack.push(new Node(mod, 1));
+                    }
+                } else {
+                    stack.push(new Node(mod, 1));
+                }
+            }
+            HashSet<Integer> set = new HashSet<>();
+            for (Node node : stack) {
+                set.add(node.c * node.times);
+            }
             int t = scan.nextInt();
-            int x, num, y;
+            int num;
             for (int i = 0; i < t; i++) {
                 num = scan.nextInt();
-                if (num < 38) out.println(num);
-                else {
-                    x = num / 10;
-                    y = num % 10;
-                    if (y != 0) {
-                        if (y <= 5) x = x * 10 + 5;
-                        else if (y > 5) x = x * 10 + 10;
-                    }
-                    else{
-                        out.println(num);
-                        continue;
-                    }
-                    if (x - num < 3) out.println(x);
-                    else out.println(num);
+                if (set.contains(num)) {
+                    out.println("Yes");
+                } else out.println("No");
+            }
+        }
 
-                }
+        class Node {
+            int c, times;
+
+            public Node(int c, int times) {
+                this.c = c;
+                this.times = times;
             }
         }
 
