@@ -1,7 +1,5 @@
 import java.io.*;
-import java.util.PriorityQueue;
-import java.util.StringTokenizer;
-import java.util.Random;
+import java.util.*;
 
 public class test {
     public static void main(String[] args) {
@@ -18,21 +16,24 @@ public class test {
         public void solve(InputReader scan, PrintWriter out) {
             long n = scan.nextLong();
             int k = scan.nextInt();
-            PriorityQueue<Long> queue = new PriorityQueue<>();
+            TreeSet<Long> set=new TreeSet<>();
             for (int i = (int) (Math.sqrt(n) + 1); i > 0; i--) {
                 if (n % i == 0) {
-                    if (!queue.contains((long)i)) queue.add((long) i);
-                    if (!queue.contains(n / i)) queue.add(n / i);
+                    if (!set.contains((long)i)) set.add((long) i);
+                    if (!set.contains(n / i)) set.add(n / i);
                 }
             }
             long a = -1;
-            while (k != 0) {
-                try {
-                    a = queue.poll();
-                } catch (NullPointerException x) {
-                    a = -1;
+            if(k>set.size()) {
+                out.println(-1);
+                return;
+            }
+            for (Long aSet : set) {
+                if(k==0) break;
+                else {
+                    a=aSet;
+                    k--;
                 }
-                k--;
             }
             out.println(a);
         }
