@@ -1,8 +1,4 @@
-package extras;
-
 import java.io.*;
-import java.util.Iterator;
-import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 import java.util.Random;
 
@@ -19,27 +15,7 @@ public class test2 {
 
     static class Task {
         public void solve(InputReader scan, PrintWriter out) {
-            int n=scan.nextInt();
-            int k=scan.nextInt();
-            int count=1;
-            PriorityQueue<Integer> queue=new PriorityQueue<>();
-            for(int i = (int) (Math.sqrt(n)+1); i>0; i--){
-                if(n%i==0){
-                    if(!queue.contains(i))queue.add(i);
-                    if(!queue.contains(n/i))queue.add(n/i);
-                }
-            }
-            int a=-1;
-            while (k!=0){
-                try{
-                    a=queue.poll();
-                }
-                catch (NullPointerException x){
-                    a=-1;
-                }
-                k--;
-            }
-            out.println(a);
+
         }
     }
 
