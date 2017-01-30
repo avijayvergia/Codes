@@ -59,5 +59,6 @@ public class test3 {
         public int nextInt() {
             return Integer.parseInt(next());
         }
+        public long nextLong(){return Long.parseLong(next());}
     }
 }
