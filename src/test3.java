@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.StringTokenizer;
-import java.util.Random;
 
 public class test3 {
     public static void main(String[] args) {
@@ -15,7 +14,25 @@ public class test3 {
 
     static class Task {
         public void solve(InputReader scan, PrintWriter out) {
+            String a=scan.next();
+            String b=scan.next();
+            out.println(lcsDynamic(a.toCharArray(),b.toCharArray()));
+        }
 
+        public String lcsDynamic(char str1[], char str2[]) {
+            int temp[][] = new int[str1.length + 1][str2.length + 1];
+            int max = 0;
+            StringBuilder x=new StringBuilder();
+            for (int i = 1; i < temp.length; i++)
+                for (int j = 1; j < temp[i].length; j++) {
+                    if (str1[i - 1] == str2[j - 1]) temp[i][j] = temp[i - 1][j - 1] + 1;
+                    else temp[i][j] = temp[i][j - 1];
+                    if (temp[i][j] > max) {
+                        x.append(str1[i]);
+                        max = temp[i][j];
+                    }
+                }
+            return x.toString();
         }
     }
 
