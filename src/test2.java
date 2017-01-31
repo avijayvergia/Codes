@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 import java.util.Random;
@@ -16,50 +17,54 @@ public class test2 {
 
     static class Task {
         public void solve(InputReader scan, PrintWriter out) {
-            int u=scan.nextInt();
-            int p=scan.nextInt();
-            int b=scan.nextInt();
-            int t=scan.nextInt();
-            int total=u+p+b;
-            PriorityQueue<Integer> usb=new PriorityQueue<>();
-            PriorityQueue<Integer> ps=new PriorityQueue<>();
-            int c;
-            String what;
-            for (int i = 0; i < t; i++) {
-                c=scan.nextInt();
-                what=scan.next();
-                if(what.startsWith("U")){
-                    usb.add(c);
-                }
-                else {
-                    ps.add(c);
-                }
-            }
-            long sum=0;
-            while (!usb.isEmpty()){
+            int n = scan.nextInt();
+            int[] a = new int[n];
+            int[] b = new int[n];
+            int t = scan.nextInt();
+            int x, y;
+            x = scan.nextInt();
+            int s1 = 0;
 
-                if(u==0){
-                    break;
-                }
-                sum+=usb.poll();
-                u--;
-            }
-            while (!ps.isEmpty()){
+            boolean flag=false;
 
-                if(p==0) break;
-                sum+=ps.poll();
-                p--;
+            for (int i = 1; i < n; i++) {
+                y = scan.nextInt();
+                s1 += y - x;
+                a[i - 1] = y - x;
+                x = y;
             }
-            usb.addAll(ps);
-            while (!usb.isEmpty()){
 
-                if(b==0){
-                    break;
-                }
-                sum+=usb.poll();
-                b--;
+            if(s1==0&&x<=t) flag=true;
+
+            a[n - 1] = t - s1;
+            Arrays.sort(a);
+            x = scan.nextInt();
+            int s2 = 0;
+            for (int i = 1; i < n; i++) {
+                y = scan.nextInt();
+                s2 += y - x;
+                b[i - 1] = y - x;
+                x = y;
             }
-            out.println(total-(u+b+p)+" "+sum);
+            b[n - 1] = t - s2;
+            Arrays.sort(b);
+
+            for (int i = 0; i < n; i++) {
+                out.print(a[i]);
+            }
+            out.println();
+            for (int i = 0; i < n; i++) {
+                out.print(b[i]);
+            }
+            out.println();
+            if(flag&&s2==0&&x<=t) {
+                out.println("YES");
+                return;
+            }
+
+            if (Arrays.equals(a, b)) out.println("YES");
+            else out.println("NO");
+
 
         }
     }

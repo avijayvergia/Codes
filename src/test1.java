@@ -14,28 +14,11 @@ public class test1 {
 
     static class Task {
         public void solve(InputReader scan, PrintWriter out) {
-            long n = scan.nextLong();
-            int k = scan.nextInt();
-            TreeSet<Long> set=new TreeSet<>();
-            for (int i = (int) (Math.sqrt(n) + 1); i > 0; i--) {
-                if (n % i == 0) {
-                    if (!set.contains((long)i)) set.add((long) i);
-                    if (!set.contains(n / i)) set.add(n / i);
-                }
-            }
-            long a = -1;
-            if(k>set.size()) {
-                out.println(-1);
-                return;
-            }
-            for (Long aSet : set) {
-                if(k==0) break;
-                else {
-                    a=aSet;
-                    k--;
-                }
-            }
-            out.println(a);
+            int a=scan.nextInt();
+            int b=scan.nextInt();
+            int x=Math.abs(a-b);
+            if(x==1||x==0) out.println("YES");
+            else out.println("NO");
         }
     }
 
