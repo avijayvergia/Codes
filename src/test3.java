@@ -1,5 +1,7 @@
+import java.awt.*;
 import java.io.*;
 import java.util.StringTokenizer;
+import java.util.Vector;
 
 public class test3 {
     public static void main(String[] args) {
@@ -14,7 +16,30 @@ public class test3 {
 
     static class Task {
         public void solve(InputReader scan, PrintWriter out) {
+            Vector<Point> v = new Vector<>();
+            v.add(new Point(2, 3));
+            v.add(new Point(2, 4));
+            out.println(v);
+            out.println();
+            out.println(doGraham(v));
+        }
 
+        Point doGraham(Vector<Point> p) {
+            int i, j, min, M;
+            Point t;
+            min = 0;
+            for (i = 1; i < p.size(); ++i) {
+                if (p.get(i).y < p.get(min).y) {
+                   min=i;
+                   min=0;
+                }
+            }
+            for (i = 0; i < p.size(); ++i) {
+                if ((p.get(i).y == p.get(min).y) && p.get(i).x > p.get(min).x) {
+                    min = i;
+                }
+            }
+            return p.get(min);
         }
     }
 
@@ -41,6 +66,9 @@ public class test3 {
         public int nextInt() {
             return Integer.parseInt(next());
         }
-        public long nextLong(){return Long.parseLong(next());}
+
+        public long nextLong() {
+            return Long.parseLong(next());
+        }
     }
 }
