@@ -14,7 +14,26 @@ public class test1 {
 
     static class Task {
         public void solve(InputReader scan, PrintWriter out) {
+            int t=scan.nextInt();
+            String home=scan.next();
+            ArrayList<String> set=new ArrayList<>();
+            String[] dep=new String[t];
+            String[] arr=new String[t];
+            String[] temp;
+            for (int i = 0; i < t; i++) {
+                temp=scan.next().split("->");
+                dep[i]=temp[0];
+                arr[i]=temp[1];
+            }
+            for (int i = 0; i < t; i++) {
+                if(dep[i].equals(home)) set.add(arr[i]);
+            }
+            for (int i = 0; i < t; i++) {
+                if(!dep[i].equals(home)) set.remove(dep[i]);
+            }
 
+            if(set.isEmpty()) out.println("home");
+            else out.println("contest");
         }
     }
 
