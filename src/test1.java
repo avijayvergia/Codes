@@ -14,11 +14,7 @@ public class test1 {
 
     static class Task {
         public void solve(InputReader scan, PrintWriter out) {
-            int a=scan.nextInt();
-            int b=scan.nextInt();
-            int x=Math.abs(a-b);
-            if(x==1||x==0) out.println("YES");
-            else out.println("NO");
+
         }
     }
 
