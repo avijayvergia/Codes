@@ -1,7 +1,5 @@
-import java.awt.*;
 import java.io.*;
 import java.util.StringTokenizer;
-import java.util.Vector;
 
 public class test3 {
     public static void main(String[] args) {
