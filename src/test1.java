@@ -1,5 +1,6 @@
 import java.io.*;
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class test1 {
@@ -15,26 +16,18 @@ public class test1 {
 
     static class Task {
         public void solve(InputReader scan, PrintWriter out) {
-            int t=scan.nextInt();
-            String home=scan.next();
-            ArrayList<String> set=new ArrayList<>();
-            String[] dep=new String[t];
-            String[] arr=new String[t];
-            String[] temp;
-            for (int i = 0; i < t; i++) {
-                temp=scan.next().split("->");
-                dep[i]=temp[0];
-                arr[i]=temp[1];
+            int n=scan.nextInt();
+            PriorityQueue<Long> a=new PriorityQueue<>(Collections.reverseOrder());
+            for (int i = 0; i < n; i++) {
+                a.add(scan.nextLong());
             }
-            for (int i = 0; i < t; i++) {
-                if(dep[i].equals(home)) set.add(arr[i]);
+            long sum=0;
+            int count=0;
+            while (!a.isEmpty()){
+                sum+=a.poll()*(Math.pow(2,count));
+                count++;
             }
-            for (int i = 0; i < t; i++) {
-                if(!dep[i].equals(home)) set.remove(dep[i]);
-            }
-
-            if(set.isEmpty()) out.println("home");
-            else out.println("contest");
+            out.println(sum);
         }
     }
 
@@ -62,6 +55,8 @@ public class test1 {
             return Integer.parseInt(next());
         }
 
-        public long nextLong(){return Long.parseLong(next());}
+        public long nextLong() {
+            return Long.parseLong(next());
+        }
     }
 }

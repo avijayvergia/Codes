@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.LinkedList;
 import java.util.StringTokenizer;
 
 public class test2 {
@@ -15,23 +14,6 @@ public class test2 {
 
     static class Task {
         public void solve(InputReader scan, PrintWriter out) {
-
-            String x = scan.next();
-            LinkedList<Character> set = new LinkedList<>();
-            for (int i = 0; i < x.length(); i++) {
-                if (!set.contains(x.charAt(i))) set.add(x.charAt(i));
-            }
-            StringBuilder str = new StringBuilder();
-            for (int i = 0; i < set.size(); i++) {
-                str.append((char) ('a' + i));
-            }
-            for(int i=0;i<set.size();i++){
-                if(set.get(i)!=str.charAt(i)) {
-                    out.println("NO");
-                    return;
-                }
-            }
-            out.println("YES");
 
         }
     }
