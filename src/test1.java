@@ -16,18 +16,7 @@ public class test1 {
 
     static class Task {
         public void solve(InputReader scan, PrintWriter out) {
-            int n=scan.nextInt();
-            PriorityQueue<Long> a=new PriorityQueue<>(Collections.reverseOrder());
-            for (int i = 0; i < n; i++) {
-                a.add(scan.nextLong());
-            }
-            long sum=0;
-            int count=0;
-            while (!a.isEmpty()){
-                sum+=a.poll()*(Math.pow(2,count));
-                count++;
-            }
-            out.println(sum);
+
         }
     }
 
