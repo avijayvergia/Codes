@@ -14,53 +14,7 @@ public class test2 {
 
     static class Task {
         public void solve(InputReader scan, PrintWriter out) {
-            int n = scan.nextInt();
-            Node[] a = new Node[n];
-            for (int i = 0; i < n; i++) {
-                a[i]=new Node();
-                a[i].gene = scan.next();
-            }
-            for (int i = 0; i < n; i++) {
-                a[i].value = scan.nextInt();
-            }
-            int t = scan.nextInt();
-            int start, end;
-            String d;
-            int sum;
-            int min = Integer.MAX_VALUE;
-            int max = Integer.MIN_VALUE;
 
-            for (int i = 0; i < t; i++) {
-                sum = 0;
-                start = scan.nextInt();
-                end = scan.nextInt();
-                d = scan.next();
-                for (int j = start; j <= end; j++) {
-                    sum += findOccur(a[j].gene, d) * a[j].value;
-                }
-                if (sum < min) min = sum;
-                if (sum > max) max = sum;
-            }
-            out.println(min + " " + max);
-        }
-
-        class Node {
-            int value;
-            String gene;
-        }
-
-        int findOccur(String findStr, String str) {
-            int count = 0;
-            int len = findStr.length();
-            for (int i = 0; i <= str.length() - len; i++) {
-                if(len==1){
-                    if(str.charAt(i)==findStr.charAt(0)) count++;
-                }
-                else{
-                    if (str.substring(i, i + len).equals(findStr)) count++;
-                }
-            }
-            return count;
         }
     }
 

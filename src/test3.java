@@ -1,6 +1,4 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.StringTokenizer;
 
 public class test3 {
@@ -16,26 +14,7 @@ public class test3 {
 
     static class Task {
         public void solve(InputReader scan, PrintWriter out) {
-            ArrayList<City> list=new ArrayList<>();
-            int n=scan.nextInt();
-            int x=scan.nextInt();
-            int y=scan.nextInt();
-            for (int i = 0; i < n; i++) {
-                list.add(new City(scan.nextInt(),scan.nextInt(),scan.nextInt(),scan.nextInt()));
-            }
-            list.sort((a, b) -> Math.max(a.height, b.height));
 
-        }
-
-        class City{
-            int lat,lon,height,points;
-
-            City(int lat, int lon, int height, int points) {
-                this.lat = lat;
-                this.lon = lon;
-                this.height = height;
-                this.points = points;
-            }
         }
     }
 

@@ -1,6 +1,5 @@
 import java.io.*;
-import java.util.Collections;
-import java.util.PriorityQueue;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class test1 {
@@ -16,6 +15,35 @@ public class test1 {
 
     static class Task {
         public void solve(InputReader scan, PrintWriter out) {
+            int t=scan.nextInt();
+            int[] a=new int[t];
+            ArrayList<Integer> q=new ArrayList<>();
+            for (int i = 0; i < t; i++) {
+                a[i]=scan.nextInt();
+            }
+            int c=0;
+            int want=t;
+
+            for (int i = 0; i < t; i++) {
+                if(a[i]>=want){
+                    out.print(a[i]+" ");
+                    for (int j = 0; j < c; j++) {
+                        if(q.contains(want-1)){
+                            out.print(--want+" ");
+                            q.remove(q.indexOf(want));
+                        }
+                        else break;
+                    }
+                    if(i!=t-1)
+                        out.println();
+                    want--;
+                }
+                else {
+                    c++;
+                    q.add(a[i]);
+                    out.println();
+                }
+            }
 
         }
     }
