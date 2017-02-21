@@ -14,6 +14,11 @@ public class test3 {
 
     static class Task {
         public void solve(InputReader scan, PrintWriter out) {
+            int ans=0;
+            for(int i=1;i<7;i++){
+                ans=ans^i;
+            }
+            out.println(ans);
 
         }
     }
