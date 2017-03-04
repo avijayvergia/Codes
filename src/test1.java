@@ -14,27 +14,8 @@ public class test1 {
 
     static class Task {
 
-        int[] arr=new int[100001];
         public void solve(InputReader scan, PrintWriter out) {
-            int t=scan.nextInt();
-            int a,b;
-            for (int i = 0; i < t; i++) {
-                a=scan.nextInt();
-                b=scan.nextInt();
-                int ans=0;
-                for (int j = a; j <= b;j++) {
-                    if(j%2!=0) ans^=j;
-                    else ans^=find(j);
-                }
-                out.println(ans);
-            }
-        }
 
-        int find(int x){
-            if(arr[x]!=0) return arr[x];
-            if(x%2!=0) arr[x]=x;
-            else arr[x]=find(x/2);
-            return arr[x];
         }
     }
 
