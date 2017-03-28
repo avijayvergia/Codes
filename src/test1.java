@@ -13,7 +13,6 @@ public class test1 {
     }
 
     static class Task {
-
         public void solve(InputReader scan, PrintWriter out) {
 
         }
